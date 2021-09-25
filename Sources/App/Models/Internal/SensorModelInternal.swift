@@ -9,7 +9,7 @@ import Foundation
 import Vapor
 
 /// модель датчика с эксельки
-struct SensorModel: Codable, Content {
+struct SensorModelInternal: Codable {
     
     // MARK: - Properties
     
@@ -53,7 +53,7 @@ struct SensorModel: Codable, Content {
 
 // MARK: - Nested types
 
-extension SensorModel {
+extension SensorModelInternal {
     
     struct Coordinate: Codable {
         let lat: Double
