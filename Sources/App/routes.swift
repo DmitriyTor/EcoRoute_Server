@@ -12,6 +12,10 @@ func routes(_ app: Application) throws {
         return try sensorClusterController.cluster(req: req)
     }
  
+    app.post("sensors") { req in
+        return try sensorClusterController.sensors(req: req)
+    }
+             
     app.post("poi") { req -> EventLoopFuture<String> in
         return try sensorClusterController.poi(req: req)
     }
