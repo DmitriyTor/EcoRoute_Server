@@ -16,6 +16,7 @@ struct SensorController {
     func sensors(for model: GeoSquareContent) throws -> [SensorModel] {
         switch sensorDataService.getData() {
         case let .success(sensors):
+            print("success get sensors from file")
             return sensors
                 .filter {
                     polygoneService.checkCount(
