@@ -17,4 +17,9 @@ struct POIElementResponseModel: Content {
     let type: String
     let lat: Double
     let lon: Double
+    let tags: POIElementTagResponseModel?
+}
+
+struct POIElementTagResponseModel: Content {
+    let name: String?
 }

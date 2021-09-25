@@ -11,10 +11,6 @@ import Foundation
 /// контроллер запросов в оверпасс за пои
 final class OverpassController {
     
-    // MARK: - Properties
-    
-    private let polygoneService = PolygoneService()
-    
     /// Получение POI в заданном квадрате
     func getPOI(
         on appClient: Client,
@@ -30,16 +26,11 @@ final class OverpassController {
         )
         
         return client.get(uri, headers: headers)
-            .flatMapThrowing { [weak self] response -> [POIModel] in
-                guard let self = self else { throw OverpassControllerError.selfIsNil }
-                
+            .flatMapThrowing { response -> [POIModel] in
                 let model = try response.content.decode(POIResponseModel.self)
                 return model.elements
                     .map {
-                        POIModel(type: $0.type, lat: $0.lat, lon: $0.lon)
-                    }
-                    .filter {
-                        self.polygoneService.checkCount(pointX: $0.lat, pointY: $0.lon, in: content)
+                        POIModel(type: $0.type, lat: $0.lat, lon: $0.lon, name: $0.tags?.name ?? "NoName")
                     }
             }
     }

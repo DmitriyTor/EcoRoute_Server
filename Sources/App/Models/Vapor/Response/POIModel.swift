@@ -12,4 +12,5 @@ struct POIModel: Content {
     let type: String
     let lat: Double
     let lon: Double
+    let name: String
 }

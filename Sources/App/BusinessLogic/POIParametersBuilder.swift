@@ -11,19 +11,23 @@ import Foundation
 struct POIParametersBuilder {
     
     static func buildParams(with geoSquare: GeoSquareContent) -> String {
-        let poiTypes: String = [
-            POIType.Amenity.allCases
-                .map { return "[amenity=\($0)]"}
-                .joined(),
-            
-            POIType.Boundary.allCases
-                .map { return "[boundary=\($0)]"}
-                .joined(),
-            
-            POIType.Leisure.allCases
-                .map { return "[leisure=\($0)]"}
-                .joined()
-        ].joined()
+        
+        // TODO: - научится возращать все объекты
+//        let poiTypes: String = [
+//            POIType.Amenity.allCases
+//                .map { return "[amenity=\($0)]"}
+//                .joined(),
+//
+//            POIType.Boundary.allCases
+//                .map { return "[boundary=\($0)]"}
+//                .joined(),
+//
+//            POIType.Leisure.allCases
+//                .map { return "[leisure=\($0)]"}
+//                .joined()
+//        ].joined()
+        
+        let poiTypes = "[amenity=cafe]"
         
         let geoPoints = [
             String(describing: geoSquare.leftTopPoint.latitude),
@@ -32,7 +36,7 @@ struct POIParametersBuilder {
             String(describing: geoSquare.rightBottomPoint.longitude)
         ].joined(separator: ",")
         
-        let requiredFiles = "data=[out:json];node"
+        let requiredFiles = "data=[out:json][timeout:5];node"
         
         return requiredFiles + poiTypes + "(" + geoPoints + ")" + ";out;"
     }
