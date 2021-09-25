@@ -7,17 +7,18 @@
 
 import Vapor
 
+/// Модель входящая в бэк для квадрата точек
 struct GeoSquareContent: Content {
     
     /// левая верхняя точка квадрата
-    let leftTopPoint: Float
+    let leftTopPoint: Double
     
     /// правая верхняя точка квадрата
-    let rightTopPoint: Float
+    let rightTopPoint: Double
     
     /// правая нижняя точка квадрата
-    let rightBottomPoint: Float
+    let rightBottomPoint: Double
     
     /// левая нижяя точка квадрата
-    let leftBottomPoint: Float
+    let leftBottomPoint: Double
 }
