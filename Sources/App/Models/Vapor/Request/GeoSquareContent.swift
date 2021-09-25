@@ -24,6 +24,6 @@ struct GeoSquareContent: Content {
 }
 
 struct GeoSquarePoint: Content {
-    let x: Double
-    let y: Double
+    let latitude: Double
+    let longitude: Double
 }

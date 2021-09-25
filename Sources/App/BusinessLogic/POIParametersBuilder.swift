@@ -26,10 +26,10 @@ struct POIParametersBuilder {
         ].joined()
         
         let geoPoints = [
-            String(describing: geoSquare.leftTopPoint.x),
-            String(describing: geoSquare.leftTopPoint.y),
-            String(describing: geoSquare.rightBottomPoint.x),
-            String(describing: geoSquare.rightBottomPoint.y)
+            String(describing: geoSquare.leftTopPoint.latitude),
+            String(describing: geoSquare.leftTopPoint.longitude),
+            String(describing: geoSquare.rightBottomPoint.latitude),
+            String(describing: geoSquare.rightBottomPoint.longitude)
         ].joined(separator: ",")
         
         let requiredFiles = "data=[out:json];node"

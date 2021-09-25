@@ -17,10 +17,10 @@ struct PolygoneService {
     ) -> Bool {
         
         let polygon = Polygon(points: [
-            Point(x: rect.leftTopPoint.x, y: rect.leftTopPoint.y),
-            Point(x: rect.rightTopPoint.x, y: rect.rightTopPoint.y),
-            Point(x: rect.leftBottomPoint.x, y: rect.leftBottomPoint.y),
-            Point(x: rect.rightBottomPoint.x, y: rect.rightBottomPoint.y)
+            Point(x: rect.leftTopPoint.latitude, y: rect.leftTopPoint.longitude),
+            Point(x: rect.rightTopPoint.latitude, y: rect.rightTopPoint.longitude),
+            Point(x: rect.leftBottomPoint.latitude, y: rect.leftBottomPoint.longitude),
+            Point(x: rect.rightBottomPoint.latitude, y: rect.rightBottomPoint.longitude)
         ])
         
         return polygon.contains(
