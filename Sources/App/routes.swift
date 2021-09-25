@@ -16,7 +16,7 @@ func routes(_ app: Application) throws {
         return try rootController.sensors(req: req)
     }
              
-    app.post("poi") { req -> EventLoopFuture<String> in
+    app.post("poi") { req -> EventLoopFuture<[POIModel]> in
         return try rootController.poi(req: req)
     }
 }

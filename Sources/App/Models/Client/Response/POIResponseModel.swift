@@ -15,6 +15,6 @@ struct POIResponseModel: Content {
 /// Моделька респонса POI c оверпаса
 struct POIElementResponseModel: Content {
     let type: String
-    let lat: Float
-    let lon: Float
+    let lat: Double
+    let lon: Double
 }

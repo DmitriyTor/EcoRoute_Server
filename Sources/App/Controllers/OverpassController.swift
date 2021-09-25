@@ -11,11 +11,15 @@ import Foundation
 /// контроллер запросов в оверпасс за пои
 struct OverpassController {
     
+    // MARK: - Properties
+    
+    private let polygoneService = PolygoneService()
+    
     /// Получение POI в заданном квадрате
     func getPOI(
         on appClient: Client,
         in content: GeoSquareContent
-    ) throws -> EventLoopFuture<String> {
+    ) throws -> EventLoopFuture<[POIModel]> {
         let client = appClient
         let headers = HTTPHeaders()
         let uri = URI(
@@ -26,10 +30,15 @@ struct OverpassController {
         )
         
         return client.get(uri, headers: headers)
-            .flatMapThrowing { response -> String in
+            .flatMapThrowing { response -> [POIModel] in
                 let model = try response.content.decode(POIResponseModel.self)
-                return "Fisrt poi is \(String(describing: model.elements.first?.lon))"
+                return model.elements
+                    .map {
+                        POIModel(type: $0.type, lat: $0.lat, lon: $0.lon)
+                    }
+                    .filter {
+                        polygoneService.checkCount(pointX: $0.lat, pointY: $0.lon, in: content)
+                    }
             }
-        
     }
 }

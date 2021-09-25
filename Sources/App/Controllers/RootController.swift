@@ -27,7 +27,7 @@ final class RootController {
     }
     
     /// Получение POI в заданном квадрате
-    func poi(req: Request) throws -> EventLoopFuture<String> {
+    func poi(req: Request) throws -> EventLoopFuture<[POIModel]> {
         let geoSquare = try req.content.decode(GeoSquareContent.self)
         return try overpassController.getPOI(on: req.client, in: geoSquare)
     }
