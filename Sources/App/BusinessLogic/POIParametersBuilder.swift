@@ -36,7 +36,7 @@ struct POIParametersBuilder {
             String(describing: geoSquare.rightBottomPoint.longitude)
         ].joined(separator: ",")
         
-        let requiredFiles = "data=[out:json][timeout:3];node"
+        let requiredFiles = "data=[out:json][timeout:5];node"
         
         return requiredFiles + poiTypes + "(" + geoPoints + ")" + ";out;"
     }
