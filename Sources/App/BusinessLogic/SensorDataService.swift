@@ -18,28 +18,10 @@ struct SensorDataService {
         let url = URL(forResource: "Sensors", type: "json")
         do {
             let data = try Data(contentsOf: url)
-            print("success get data from file")
-            print((try jsonDecoder.decode([SensorModelInternal].self, from: data)).first)
             let sensors = try jsonDecoder.decode([SensorModelInternal].self, from: data)
-                .flatMap { SensorModel(
-                    coordinate: .init(
-                        lat: $0.coordinate.lat,
-                        long: $0.coordinate.long
-                    ),
-                    timeStamp: $0.timeStamp,
-                    temp: $0.temp,
-                    humidity: $0.humidity,
-                    CO2: $0.CO2,
-                    LOC: $0.LOC,
-                    dustPM1_0: $0.dustPM1_0,
-                    dustPM2_5: $0.dustPM2_5,
-                    dustPM10: $0.dustPM10,
-                    pressure: $0.pressure,
-                    AQJ: $0.AQJ,
-                    formaldehyde: $0.formaldehyde
-                )
+                .flatMap {
+                    SensorModel.prepareModel($0)
                 }
-            print("success get map from file")
             return .success(sensors)
         } catch {
             return .failure(error)
