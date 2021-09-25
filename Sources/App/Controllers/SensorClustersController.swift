@@ -12,8 +12,10 @@ struct SensorClustersController {
     // MARK: - Public
     
     /// Получение класстера датчиков вместе с POI
-    func cluster(for model: GeoSquareContent) throws -> SensorClusterModel {
-        let coordinates = SensorClusterModel.Coordinates(longitude: 1, lantitude: 1)
-        return SensorClusterModel(coordinate: coordinates)
-    }
+//    func cluster(for sensors: [SensorModel], forPoi poi: EventLoopFuture<[POIModel]>) throws -> EventLoopFuture<[SensorClusterModel]> {
+//        poi.whenSuccess { poi in
+//            
+//        }
+//        return SensorClusterModel(coordinate: coordinates)
+//    }
 }

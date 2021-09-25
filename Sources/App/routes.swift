@@ -8,9 +8,9 @@ func routes(_ app: Application) throws {
     
     let rootController = RootController()
     
-    app.post("sensorCluster") { req in
-        return try rootController.cluster(req: req)
-    }
+//    app.post("sensorCluster") { req in
+//        return try rootController.cluster(req: req)
+//    }
  
     app.post("sensors") { req in
         return try rootController.sensors(req: req)
