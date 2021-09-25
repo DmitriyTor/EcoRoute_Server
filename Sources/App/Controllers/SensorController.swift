@@ -17,7 +17,7 @@ struct SensorController {
         case let .success(sensors):
             return sensors
         case let .failure(error): // TODO: добавить фетчинг ошибок
-            return []
+            throw error
         }
     }
 }

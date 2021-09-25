@@ -16,11 +16,11 @@ struct SensorDataService {
     /// заберем данные с локального файла
     func getData() -> Result<[SensorModel], Error> {
         
-        let serverDirectory = "/home/vapor/EcoRoute_Server"
+        let serverDirectoryUrl = URL(string: "home/vapor/EcoRoute_Server")!
         let configDir = "Sources/Resources"
         
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: serverDirectory)
+            let data = try Data(contentsOf: serverDirectoryUrl
                                     .appendingPathComponent(configDir, isDirectory: true)
                                     .appendingPathComponent("Sensors.json", isDirectory: false))
             let sensors = try jsonDecoder.decode([SensorModel].self, from: data)
