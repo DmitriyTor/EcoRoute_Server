@@ -26,7 +26,7 @@ struct SensorModel: Codable, Content {
     let humidity: Double
     
     /// уровень СО2
-    let co2: Double
+    let CO2: Double
     
     /// уровень ЛОС (хз че это)
     let LOC: Double

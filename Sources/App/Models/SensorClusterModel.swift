@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-final class SensorClusterModel {
+final class SensorClusterModel: Content {
     
     // MARK: - Properties
     
@@ -23,31 +23,11 @@ final class SensorClusterModel {
     }
 }
 
-// MARK: - ResponseEncodable
-
-extension SensorClusterModel: ResponseEncodable {
-    
-    func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
-        var headers = HTTPHeaders()
-        headers.add(name: .contentType, value: "application/json")
-        
-        return request.eventLoop.makeSucceededFuture(
-            .init(
-                status: .ok,
-                headers: headers,
-                body: .init(
-                   
-                )
-            )
-        )
-    }
-}
-
 // MARK: - Nested types
 
 extension SensorClusterModel {
     
-    final class Coordinates {
+    final class Coordinates: Content {
         let longitude: Float
         let lantitude: Float
         

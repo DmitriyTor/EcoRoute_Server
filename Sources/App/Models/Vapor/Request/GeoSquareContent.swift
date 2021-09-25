@@ -11,14 +11,19 @@ import Vapor
 struct GeoSquareContent: Content {
     
     /// левая верхняя точка квадрата
-    let leftTopPoint: Double
+    let leftTopPoint: GeoSquarePoint
     
     /// правая верхняя точка квадрата
-    let rightTopPoint: Double
+    let rightTopPoint: GeoSquarePoint
     
     /// правая нижняя точка квадрата
-    let rightBottomPoint: Double
+    let rightBottomPoint: GeoSquarePoint
     
     /// левая нижяя точка квадрата
-    let leftBottomPoint: Double
+    let leftBottomPoint: GeoSquarePoint
+}
+
+struct GeoSquarePoint: Content {
+    let x: Double
+    let y: Double
 }
