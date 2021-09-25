@@ -22,7 +22,7 @@ final class OverpassController {
             scheme: .https,
             host: Constants.Endpoints.Overpass.host,
             path: Constants.Endpoints.Overpass.path,
-            query: content.getParametrsForOverpass()
+            query: POIParametersBuilder.buildParams(with: content)
         )
         
         return client.get(uri, headers: headers)
