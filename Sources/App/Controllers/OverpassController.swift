@@ -9,7 +9,7 @@ import Vapor
 import Foundation
 
 /// контроллер запросов в оверпасс за пои
-struct OverpassController {
+final class OverpassController {
     
     // MARK: - Properties
     
@@ -30,15 +30,24 @@ struct OverpassController {
         )
         
         return client.get(uri, headers: headers)
-            .flatMapThrowing { response -> [POIModel] in
+            .flatMapThrowing { [weak self] response -> [POIModel] in
+                guard let self = self else { throw OverpassControllerError.selfIsNil }
+                
                 let model = try response.content.decode(POIResponseModel.self)
                 return model.elements
                     .map {
                         POIModel(type: $0.type, lat: $0.lat, lon: $0.lon)
                     }
                     .filter {
-                        polygoneService.checkCount(pointX: $0.lat, pointY: $0.lon, in: content)
+                        self.polygoneService.checkCount(pointX: $0.lat, pointY: $0.lon, in: content)
                     }
             }
+    }
+}
+
+extension OverpassController {
+    
+    enum OverpassControllerError: Error {
+        case selfIsNil
     }
 }

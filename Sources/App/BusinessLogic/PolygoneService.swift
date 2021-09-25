@@ -19,8 +19,8 @@ struct PolygoneService {
         let polygon = Polygon(points: [
             Point(x: rect.leftTopPoint.x, y: rect.leftTopPoint.y),
             Point(x: rect.rightTopPoint.x, y: rect.rightTopPoint.y),
-            Point(x: rect.rightBottomPoint.x, y: rect.rightBottomPoint.y),
-            Point(x: rect.leftBottomPoint.x, y: rect.leftBottomPoint.y)
+            Point(x: rect.leftBottomPoint.x, y: rect.leftBottomPoint.y),
+            Point(x: rect.rightBottomPoint.x, y: rect.rightBottomPoint.y)
         ])
         
         return polygon.contains(

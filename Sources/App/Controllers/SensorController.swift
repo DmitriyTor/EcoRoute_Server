@@ -18,7 +18,11 @@ struct SensorController {
         case let .success(sensors):
             return sensors
                 .filter {
-                    polygoneService.checkCount(pointX: $0.coordinate.lat, pointY: $0.coordinate.long, in: model)
+                    polygoneService.checkCount(
+                        pointX: $0.coordinate.lat,
+                        pointY: $0.coordinate.long,
+                        in: model
+                    )
                 }
         case let .failure(error): // TODO: добавить фетчинг ошибок
             throw error
