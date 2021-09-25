@@ -16,7 +16,7 @@ struct SensorController {
         switch sensorDataService.getData() {
         case let .success(sensors):
             return sensors
-        case let .failure(_): // TODO: добавить фетчинг ошибок
+        case let .failure(error): // TODO: добавить фетчинг ошибок
             return []
         }
     }
