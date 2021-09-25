@@ -13,4 +13,5 @@ struct POIModel: Content {
     let lat: Double
     let lon: Double
     let name: String
+    let poiType = "cafe"
 }
