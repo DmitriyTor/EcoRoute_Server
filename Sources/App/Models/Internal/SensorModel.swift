@@ -48,6 +48,7 @@ struct SensorModel: Codable, Content {
     
     /// Формальдегид тоже говно какое то
     let formaldehyde: Float
+
 }
 
 // MARK: - Nested types
@@ -57,5 +58,13 @@ extension SensorModel {
     struct Coordinate: Codable {
         let lat: Double
         let long: Double
+    }
+    
+    // MARK: - CodingKeys
+    
+    enum CodingKeys: String, CodingKey {
+        case coordinate, timeStamp, temp, humidity,
+             CO2, LOC, dustPM1_0, dustPM2_5, dustPM10, pressure, AQJ,
+             formaldehyde
     }
 }
