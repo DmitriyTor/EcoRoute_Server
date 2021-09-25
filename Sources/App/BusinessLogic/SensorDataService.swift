@@ -15,9 +15,6 @@ struct SensorDataService {
     
     /// заберем данные с локального файла
     func getData() -> Result<[SensorModel], Error> {
-        
-        let directory = DirectoryConfiguration.detect()
-        let configDir = "Sources/App/Resources"
         let url = URL(forResource: "Sensors", type: "json")
         do {
             let data = try Data(contentsOf: url)
