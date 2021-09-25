@@ -6,12 +6,15 @@
 //
 
 import Foundation
-
+import Vapor
 
 /// модель датчика с эксельки
-final class SensorModel {
+struct SensorModel: Codable, Content {
     
     // MARK: - Properties
+    
+    /// координаты датчика
+    let coordinate: Coordinate
     
     /// штамп датчика
     let timeStamp: Date
@@ -45,32 +48,14 @@ final class SensorModel {
     
     /// Формальдегид тоже говно какое то
     let formaldehyde: Float
+}
+
+// MARK: - Nested types
+
+extension SensorModel {
     
-    // MARK: - Lifecycle
-    
-    init(
-        timeStamp: Date,
-        temp: Double,
-        humidity: Double,
-        co2: Double,
-        LOC: Double,
-        dustPM1_0: Double,
-        dustPM2_5: Double,
-        dustPM10: Double,
-        pressure: Double,
-        AQJ: Double,
-        formaldehyde: Float
-    ) {
-        self.timeStamp = timeStamp
-        self.temp = temp
-        self.humidity = humidity
-        self.co2 = co2
-        self.LOC = LOC
-        self.dustPM1_0 = dustPM1_0
-        self.dustPM2_5 = dustPM2_5
-        self.dustPM10 = dustPM10
-        self.pressure = pressure
-        self.AQJ = AQJ
-        self.formaldehyde = formaldehyde
+    struct Coordinate: Codable {
+        let lat: Double
+        let long: Double
     }
 }

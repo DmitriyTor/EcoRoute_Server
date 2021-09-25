@@ -9,7 +9,7 @@ import Vapor
 import Foundation
 
 /// контроллер запросов в оверпасс за пои
-final class OverpassController {
+struct OverpassController {
     
     /// Получение POI в заданном квадрате
     func getPOI(

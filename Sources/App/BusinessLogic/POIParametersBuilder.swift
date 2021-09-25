@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class POIParametersBuilder {
+/// Структурка для создания параметров для запроса в оверпасс
+struct POIParametersBuilder {
     
     static func buildParams(with geoSquare: GeoSquareContent) -> String {
-        
         let poiTypes: String = [
             POIType.Amenity.allCases
                 .map { return "[amenity=\($0)]"}
