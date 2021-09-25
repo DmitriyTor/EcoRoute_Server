@@ -9,13 +9,19 @@ import Vapor
 
 struct SensorClustersController {
     
+    // MARK: - Properties
+    
+    private let clusterBuilder = ClusterBuilder()
+    
     // MARK: - Public
     
     /// Получение класстера датчиков вместе с POI
-//    func cluster(for sensors: [SensorModel], forPoi poi: EventLoopFuture<[POIModel]>) throws -> EventLoopFuture<[SensorClusterModel]> {
-//        poi.whenSuccess { poi in
-//            
-//        }
-//        return SensorClusterModel(coordinate: coordinates)
-//    }
+    func cluster(
+        forPoi poi: EventLoopFuture<[POIModel]>,
+        inSquare square: GeoSquareContent
+    ) throws -> EventLoopFuture<[SensorClusterModel]> {
+        return poi.flatMapThrowing{ pois in
+            try clusterBuilder.buildCluster(for: pois, inSquare: square)
+        }
+    }
 }

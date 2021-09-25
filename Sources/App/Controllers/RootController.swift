@@ -15,12 +15,11 @@ final class RootController {
     private let overpassController = OverpassController()
     
     /// Получение класстера датчиков вместе с POI
-//    func cluster(req: Request) throws -> EventLoopFuture<[SensorClusterModel]> {
-//        let geoSquare = try req.content.decode(GeoSquareContent.self)
-//        let sensors = try sensorController.sensors(for: geoSquare)
-//        let poi = try overpassController.getPOI(on: req.client, in: geoSquare)
-//        return try sensorClusterController.cluster(for: sensors, forPoi: poi)
-//    }
+    func cluster(req: Request) throws -> EventLoopFuture<[SensorClusterModel]> {
+        let geoSquare = try req.content.decode(GeoSquareContent.self)
+        let poi = try overpassController.getPOI(on: req.client, in: geoSquare)
+        return try sensorClusterController.cluster(forPoi: poi, inSquare: geoSquare)
+    }
     
     /// Получение датчиков в заданном квадрате
     func sensors(req: Request) throws -> [SensorModel] {

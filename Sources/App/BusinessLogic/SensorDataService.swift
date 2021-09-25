@@ -9,19 +9,24 @@ import Foundation
 import Vapor
 
 /// получение данных с сенсоров с локального джейсончика
-struct SensorDataService {
+final class SensorDataService {
     
+    static let shared = SensorDataService()
     private let jsonDecoder = JSONDecoder()
+    private var sensors: [SensorModelInternal]?
+    
+    private init() {}
     
     /// заберем данные с локального файла
-    func getData() -> Result<[SensorModel], Error> {
+    func getData() -> Result<[SensorModelInternal], Error> {
+        if let sensors = sensors {
+            return .success(sensors)
+        }
         let url = URL(forResource: "Sensors", type: "json")
         do {
             let data = try Data(contentsOf: url)
             let sensors = try jsonDecoder.decode([SensorModelInternal].self, from: data)
-                .flatMap {
-                    SensorModel.prepareModel($0)
-                }
+            self.sensors = sensors
             return .success(sensors)
         } catch {
             return .failure(error)

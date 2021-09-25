@@ -13,13 +13,17 @@ final class SensorClusterModel: Content {
     // MARK: - Properties
     
     let coordinate: Coordinates
+    let ecoRaiting: Int
+    var pois: [POIModel] = []
     
     // MARK: - Lifecycle
     
     init(
-        coordinate: Coordinates
+        coordinate: Coordinates,
+        ecoRaiting: Int
     ){
         self.coordinate = coordinate
+        self.ecoRaiting = ecoRaiting
     }
 }
 
@@ -28,12 +32,12 @@ final class SensorClusterModel: Content {
 extension SensorClusterModel {
     
     final class Coordinates: Content {
-        let longitude: Float
-        let lantitude: Float
+        let longitude: Double
+        let lantitude: Double
         
         init(
-            longitude: Float,
-            lantitude: Float
+            lantitude: Double,
+            longitude: Double
         ) {
             self.longitude = longitude
             self.lantitude = lantitude

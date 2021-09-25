@@ -9,7 +9,7 @@ import Foundation
 
 struct SensorController {
     
-    private let sensorDataService = SensorDataService()
+    private let sensorDataService = SensorDataService.shared
     private let polygoneService = PolygoneService()
     
     /// Получение датчиков в заданном квадрате
@@ -18,6 +18,9 @@ struct SensorController {
         case let .success(sensors):
             print("success get sensors from file")
             return sensors
+                .flatMap {
+                    SensorModel.prepareModel($0)
+                }
                 .filter {
                     polygoneService.checkCount(
                         pointX: $0.coordinate.lat,
